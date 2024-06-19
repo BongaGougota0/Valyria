@@ -46,12 +46,12 @@ public class Syrax extends DragonInt implements DragonRegion, Dragon{
 
 	@Override
 	public String riderMount() {
-		return (this.mountedBy.isEmpty() || this.mountedBy == null) ? "No Rider!" : this.mountedBy;
+		return (this.mountedBy == null) ? "No Rider!" : this.mountedBy;
 	}
 
 	@Override
 	public boolean wildDragon() {
-		return (this.mountedBy.isEmpty() || this.mountedBy != null);
+		return (this.mountedBy == null);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Syrax extends DragonInt implements DragonRegion, Dragon{
 
 	@Override
 	public boolean hasRider() {
-		return (this.mountedBy.isEmpty() && this.mountedBy != null);
+		return (this.mountedBy != null);
 	}
 
 }

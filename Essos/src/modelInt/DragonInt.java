@@ -9,7 +9,7 @@ public abstract class DragonInt {
 	public abstract void attack();
 	public void fly() {
 		System.out.print("Giant leap to the sky! Swoosh");
-		System.out.print("Spring my giant wings and fly. Vallah!");
+		System.out.print("Spread my giant wings and fly. Vallah!");
 
 	}
 	
