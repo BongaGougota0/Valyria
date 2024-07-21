@@ -1,0 +1,33 @@
+2024-07-21 20:14:24.741051+02:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile.mv.db [2.3.230/7]" [50000-230]
+	at com.h2database@2.3.230/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.3.230/org.h2.message.DbException.convert(DbException.java:407)
+	at com.h2database@2.3.230/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at com.h2database@2.3.230/org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at com.h2database@2.3.230/org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at com.h2database@2.3.230/org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at com.h2database@2.3.230/org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at com.h2database@2.3.230/org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at com.h2database@2.3.230/org.h2.engine.Database.<init>(Database.java:326)
+	at com.h2database@2.3.230/org.h2.engine.Engine.openSession(Engine.java:92)
+	at com.h2database@2.3.230/org.h2.engine.Engine.openSession(Engine.java:222)
+	at com.h2database@2.3.230/org.h2.engine.Engine.createSession(Engine.java:201)
+	at com.h2database@2.3.230/org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:344)
+	at com.h2database@2.3.230/org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at com.h2database@2.3.230/org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at orm.Hibernate.<init>(Hibernate.java:17)
+	at orm.Hibernate.getConnection(Hibernate.java:13)
+	at Main.main(Main.java:9)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile.mv.db [2.3.230/7]" [50000-230]
+	at com.h2database@2.3.230/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at com.h2database@2.3.230/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 20 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile.mv.db [2.3.230/7]
+	at com.h2database@2.3.230/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.3.230/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at com.h2database@2.3.230/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at com.h2database@2.3.230/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at com.h2database@2.3.230/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 14 more

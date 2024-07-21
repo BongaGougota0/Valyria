@@ -14,7 +14,7 @@ public class Warship extends Ship{
 	@Column
 	private int warExperience;
 	
-	private Warship() {}
+	public Warship() {}
 	
 	public String raisesBannerOf() {
 		return this.ally;
@@ -27,4 +27,13 @@ public class Warship extends Ship{
 	public int totalWarsFought() {
 		return this.warExperience;
 	}
+
+	@Override
+	public String toString() {
+		return "Warship [id=" + id + ", ally=" + ally + ", supplies=" + supplies + ", warExperience=" + warExperience
+				+ ", shipName=" + shipName + ", depatureLocation=" + depatureLocation + ", destination=" + destination
+				+ ", pirateShip=" + pirateShip + ", warShip=" + warShip + ", captain=" + captain
+				+ ", totalCountOfShipPassengers=" + totalCountOfShipPassengers + "]";
+	}
+	
 }
