@@ -1,3 +1,6 @@
 /.metadata/
 Aegon/.*
 WhiteWyrm/.*
+SalladhorSaan/database/databasefile.mv.db
+SalladhorSaan/database/*
+*/SalladhorSaan/database/*
