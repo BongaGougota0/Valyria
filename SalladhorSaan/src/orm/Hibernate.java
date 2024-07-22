@@ -24,13 +24,18 @@ public class Hibernate<T> {
 	}
 	
 	private Hibernate() throws Exception{
-		this.connection = DriverManager.getConnection("jdbc:h2:C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile","user","");
+		this.connection = DriverManager
+				.getConnection("jdbc:h2:C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile","user","");
 	}
 	
-	public T objectRepository(T t) throws SQLException, IllegalArgumentException, IllegalAccessException {
+	public T objectRepository(T t) throws SQLException,
+										  IllegalArgumentException,
+										  IllegalAccessException {
 		//write logic
 		Class<? extends Object> clss = t.getClass();
 		Field[] flds = t.getClass().getDeclaredFields();
+
+		System.out.println("Size of fields "+flds.length);
 		
 		StringJoiner joiner = new StringJoiner(",");
 		Field pkey = null;
@@ -40,6 +45,7 @@ public class Hibernate<T> {
 			if(f.isAnnotationPresent(SerialNumber.class)) {
 				pkey = f;
 			}else if(f.isAnnotationPresent(Column.class)) {
+				f.setAccessible(true);
 				joiner.add(f.getName());
 				columns.add(f);
 			}
@@ -50,8 +56,8 @@ public class Hibernate<T> {
 		String sqlPlaceHolders = IntStream.range(0, columnCount)
 				.mapToObj(e -> "?")
 				.collect(Collectors.joining());
-		String sql = "insert into "+ clss.getSimpleName()+ " ("+pkey.getName()+","+joiner+")"+ "values" +"("+ sqlPlaceHolders +")";
-		System.out.println("view sql statement "+sql);
+		String sql = "insert into "+ clss.getSimpleName()+ " ("+pkey.getName()+","+joiner+")"+ "values" +"(?,?,?,?)";
+		System.out.println("view sql statement:\n "+sql);
 		
 		//Set first field (primary key) in the sql statement
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -62,14 +68,15 @@ public class Hibernate<T> {
 		int indexCount = 2;
 		for(Field f : columns) {
 			if(f.getType() == int.class) {
-				stmt.setInt(columnCount++, (int)f.get(t));
-				
+				stmt.setInt(indexCount++, (int)f.get(t));
+			}else if(f.getType() == double.class) {
+				stmt.setDouble(indexCount++,(double) f.get(t));
 			}else if(f.getType() == String.class){
 				stmt.setString(indexCount++, (String)f.get(t));
 			}
 		}
 		
-		stmt.execute(sql);
+		stmt.executeUpdate();
 		
 		return t;
 	}

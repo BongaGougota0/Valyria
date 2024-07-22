@@ -4,8 +4,7 @@ import annotations.Column;
 
 public abstract class Ship {
 	
-	@Column
-	public String shipName;
+
 	public String depatureLocation;
 	public String destination;
 	public boolean pirateShip;

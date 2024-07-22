@@ -1,7 +1,12 @@
 --- jdbc:h2:C:\Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile
 
 CREATE TABLE `warship`(
-	`id` int PRIMARY KEY,
-	`pirate` VARCHAR(2555),
-	`destination` VARCHAR(255)
+	`id` long PRIMARY KEY,
+	`shipName` VARCHAR(255),
+	`captain` VARCHAR(255),
+	`pirate` VARCHAR(10),
+	`destination` VARCHAR(255),
+	`ally` VARCHAR(300),
+	`warExperience` int,
+	`totalCountOfShipPassengers` int
 )

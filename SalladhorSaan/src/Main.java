@@ -7,16 +7,18 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		Hibernate<Warship> hibernate = Hibernate.getConnection();
-		Class<?> clss = Class.forName("models.Warship").getClass();
-//		Constructor<? extends Object> cstr = clss.getConstructor(Warship.class);
-		Constructor[] cs = clss.getConstructors();
-		for(Constructor c : cs) {
-			System.out.println("-"+c.getParameterTypes());
-		}
-//		cstr.setAccessible(true);
-//		Warship warship = (Warship)cstr.newInstance();
-//		
-//		System.out.println(warship.toString());
+		Class<?> clss = Class.forName("models.Warship");
+		Constructor<?> cstr = clss.getDeclaredConstructor();
+		cstr.setAccessible(true);
+		Warship warship = (Warship)cstr.newInstance();
+		warship.setAlly("Stark");
+		warship.setSupplies(2444.44);
+		warship.setWarExperience(120);
+		
+		// Check before writing.
+		System.out.println(warship.toString());
+		// Write to db.
+		hibernate.objectRepository(warship);
 		
 	}
 }

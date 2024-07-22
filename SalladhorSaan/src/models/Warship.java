@@ -13,13 +13,39 @@ public class Warship extends Ship{
 	private double supplies;
 	@Column
 	private int warExperience;
+	@Column
+	public String shipName;
 	
-	public Warship() {}
+	private Warship() {}
 	
 	public String raisesBannerOf() {
 		return this.ally;
 	}
 	
+	public String getAlly() {
+		return ally;
+	}
+
+	public void setAlly(String ally) {
+		this.ally = ally;
+	}
+
+	public double getSupplies() {
+		return supplies;
+	}
+
+	public void setSupplies(double supplies) {
+		this.supplies = supplies;
+	}
+
+	public int getWarExperience() {
+		return warExperience;
+	}
+
+	public void setWarExperience(int warExperience) {
+		this.warExperience = warExperience;
+	}
+
 	public double suppliesCarried() {
 		return this.supplies;
 	}
@@ -30,9 +56,9 @@ public class Warship extends Ship{
 
 	@Override
 	public String toString() {
-		return "Warship [id=" + id + ", ally=" + ally + ", supplies=" + supplies + ", warExperience=" + warExperience
+		return "Warship [id=" + id + ", ally=" + ally + ", supplies=" + supplies + "\n, warExperience=" + warExperience
 				+ ", shipName=" + shipName + ", depatureLocation=" + depatureLocation + ", destination=" + destination
-				+ ", pirateShip=" + pirateShip + ", warShip=" + warShip + ", captain=" + captain
+				+ ", pirateShip=" + pirateShip + ", warShip=" + warShip + "\n, captain=" + captain
 				+ ", totalCountOfShipPassengers=" + totalCountOfShipPassengers + "]";
 	}
 	
