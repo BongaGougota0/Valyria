@@ -1,9 +1,12 @@
 package orm;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringJoiner;
@@ -26,6 +29,44 @@ public class Hibernate<T> {
 	private Hibernate() throws Exception{
 		this.connection = DriverManager
 				.getConnection("jdbc:h2:C:/Users/gmvn/Documents/Java/Valyria/SalladhorSaan/database/databasefile","user","");
+	}
+	
+	public T objectReader(T t, long id) throws SQLException,
+												NoSuchMethodException, 
+												SecurityException, 
+												InstantiationException, // or just use Exception
+												IllegalAccessException, 
+												IllegalArgumentException, 
+												InvocationTargetException {
+		Field[] flds = t.getClass().getDeclaredFields();
+		// Find the primary key to query by
+		Field primaryKey = null;
+		for(Field f : flds) {
+			if(f.isAnnotationPresent(SerialNumber.class)) {
+				primaryKey = f;
+				break;
+			}
+		}
+		String sql = "select * from "+t.getClass().getSimpleName() + " where "+primaryKey.getName()+"="+id;
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		Constructor<? extends Object> constructor = t.getClass().getDeclaredConstructor();
+		constructor.setAccessible(true);
+		T obj = (T) constructor.newInstance();
+		
+		while(rs.next()) {
+			for(Field f : flds) {
+				if(f.getType() == String.class) {
+					String strValue = rs.getString(f.getName());
+				}else if(f.getType() == long.class){
+					int intvalue = rs.getInt(f.getModifiers());
+				}else if(f.getType() == double.class) {
+					double dbl = rs.getDouble(f.getName());
+				}
+			}
+		}
+		return t;
 	}
 	
 	public T objectRepository(T t) throws SQLException,
