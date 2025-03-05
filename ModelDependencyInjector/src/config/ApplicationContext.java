@@ -5,7 +5,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-
 import annotation.Autowired;
 import annotation.Component;
 import annotation.ComponentScan;
@@ -32,7 +31,7 @@ public class ApplicationContext {
 			Object objectsDependency = applicationObjects.get(type);
 			if(field.isAnnotationPresent(Autowired.class)) {
 				try {
-					field.set(type, objectsDependency);
+					field.set(object, objectsDependency);
 					Field[] declaredFields = type.getDeclaredFields();
 					injectBean(objectsDependency, declaredFields);
 					
@@ -75,7 +74,7 @@ public class ApplicationContext {
 		
 		private static File[] findClasses(File file) {
 			if(!file.exists()) {
-				throw new RuntimeException("Package");
+				throw new RuntimeException("Package doesnot contain classes.");
 			}else {
 				File[] files = file.listFiles(f -> f.getName().endsWith(".class"));
 				return files;
