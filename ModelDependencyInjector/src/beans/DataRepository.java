@@ -16,17 +16,16 @@ import model.Orders;
 @Component
 public class DataRepository {
 	public static String QUERY = "SELECT * FROM Orders";
-	
 	public ArrayList<Orders> orders = new ArrayList<>();
+	public DataRepository() {}
 	
 	@PostConstruct
 	public void createDataByConnectingToMysql() {
 		try {
 			Connection connect = DriverManager
-					.getConnection("localhost:3306/classicmodels", "root", "@ZXCp0001");
+					.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "@ZXCp0001");
 			Statement stmt = connect.createStatement();
 			ResultSet rs =  stmt.executeQuery(QUERY);
-			
 			// Row data to capture.
 			Map<String, String> rowData = null;
 			Field[] fields = Orders.class.getDeclaredFields();

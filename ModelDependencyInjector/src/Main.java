@@ -1,3 +1,4 @@
+
 import java.util.List;
 
 import beans.DataService;
@@ -12,7 +13,7 @@ public class Main {
 		DataService dataService = app.getBean(DataService.class);
 		List<Orders> orders = dataService.getAllOrders();
 		for(Orders order : orders) {
-			System.out.println(String.format("Order no. %s with comments : %s", order.orderNumber, order.comments));
+			System.out.println(order.toString());
 		}
 	}
 }

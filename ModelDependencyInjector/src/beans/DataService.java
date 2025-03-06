@@ -15,6 +15,9 @@ public class DataService {
 		this.dataRepository = dataRepo;
 	}
 	
+	public DataService() {
+		this.dataRepository = new DataRepository();}
+	
 	public ArrayList<Orders> getAllOrders(){
 		return dataRepository.orders;
 	}
