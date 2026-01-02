@@ -9,12 +9,12 @@ import jakarta.validation.constraints.Size;
 import java.util.UUID;
 
 @Table(name="users")
-public class User {
+public class UserEntity {
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String userName, UUID userId, String password, String email) {
+    public UserEntity(String userName, UUID userId, String password, String email) {
         this.userName = userName;
         this.userId = userId;
         this.password = password;

@@ -1,0 +1,22 @@
+package za.co.app.Userkolekt.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
+import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+public class AuthenticationManagerConfig {
+
+    @Bean
+    public ReactiveAuthenticationManager reactiveUserDetailsService(ReactiveUserDetailsService userDetailsService,
+                                                                    PasswordEncoder passwordEncoder) {
+        UserDetailsRepositoryReactiveAuthenticationManager authenticationManager =
+                new UserDetailsRepositoryReactiveAuthenticationManager(userDetailsService);
+        authenticationManager.setPasswordEncoder(passwordEncoder); // use to encode passwords
+        return authenticationManager;
+    }
+}

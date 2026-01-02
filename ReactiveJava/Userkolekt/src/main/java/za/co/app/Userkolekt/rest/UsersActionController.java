@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import za.co.app.Userkolekt.model.User;
+import za.co.app.Userkolekt.model.UserEntity;
 import za.co.app.Userkolekt.service.UserService;
 
 
@@ -19,12 +19,12 @@ public class UsersActionController {
     }
 
     @PostMapping
-    public Mono<ResponseEntity<String>> createUserFavorite(@Validated @RequestBody Mono<User> newUser) {
+    public Mono<ResponseEntity<String>> createUserFavorite(@Validated @RequestBody Mono<UserEntity> newUser) {
         return null;
     }
 
     @PostMapping
-    public Mono<ResponseEntity<String>> createUserView(@Validated @RequestBody Mono<User> newUser) {
+    public Mono<ResponseEntity<String>> createUserView(@Validated @RequestBody Mono<UserEntity> newUser) {
         return null;
     }
 
