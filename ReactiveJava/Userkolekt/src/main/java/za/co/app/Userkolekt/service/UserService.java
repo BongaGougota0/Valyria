@@ -2,6 +2,7 @@ package za.co.app.Userkolekt.service;
 
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import za.co.app.Userkolekt.model.LoginCredentials;
 import za.co.app.Userkolekt.model.User;
 import za.co.app.Userkolekt.model.UserDto;
 import za.co.app.Userkolekt.repository.IUserCrudRepo;
@@ -16,7 +17,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Mono<UserDto> createNewuser(Mono<User> newUser) {
+    public Mono<UserDto> login(Mono<LoginCredentials> loginCredentials) {
+        return null;
+    }
+
+    @Override
+    public Mono<UserDto> createNewUser(Mono<User> newUser) {
         return newUser
                 .map(userRepository::save)
                 .map(this::entityToDTO);
