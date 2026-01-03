@@ -18,12 +18,12 @@ public class UsersActionController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/product-favourite")
     public Mono<ResponseEntity<String>> createUserFavorite(@Validated @RequestBody Mono<UserEntity> newUser) {
         return null;
     }
 
-    @PostMapping
+    @PostMapping("/product-view")
     public Mono<ResponseEntity<String>> createUserView(@Validated @RequestBody Mono<UserEntity> newUser) {
         return null;
     }

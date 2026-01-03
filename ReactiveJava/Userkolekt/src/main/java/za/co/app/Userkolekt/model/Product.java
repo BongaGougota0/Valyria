@@ -1,40 +1,40 @@
 package za.co.app.Userkolekt.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Table(name = "products")
+@Table("products")
 public class Product {
     @Id
-    @Column(name = "product_id")
+    @Column("product_id")
     private UUID productId;
 
-    @Column(name = "name")
+    @Column("name")
     @NotBlank(message = "Please provide product name.")
     private String name;
 
-    @Column(name = "description")
+    @Column("description")
     @NotBlank(message = "Product description cannot be null.")
     private String description;
 
-    @Column(name = "image_url")
+    @Column("image_url")
     @NotBlank(message = "Please provide image url.")
     private String imageUrl;
 
-    @Column(name = "price")
+    @Column("price")
     @NotBlank(message = "Product price cannot be null.")
     private double price;
 
-    @Column(name = "view_count")
+    @Column("view_count")
     private int viewCount;
 
-    @Column(name = "favourite_count")
+    @Column("favourite_count")
     private int favouriteCount;
 
-    @Column(name = "created_at")
+    @Column("created_at")
     private LocalDateTime createdAt;
 }

@@ -1,23 +1,24 @@
 package za.co.app.Userkolekt.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.time.LocalDateTime;
 
 @Table(name="user_actions")
 public class UserAction {
     @Id
     private Long id;
-    @Column(name = "product_id")
+    @Column("product_id")
     private String productId;
 
-    @Column(name = "user_id")
+    @Column("user_id")
     private String userId;
 
-    @Column(name = "action_type")
+    @Column("action_type")
     private String actionType;
 
-    @Column(name = "created_at")
+    @Column("created_at")
     private LocalDateTime createdAt;
 }
