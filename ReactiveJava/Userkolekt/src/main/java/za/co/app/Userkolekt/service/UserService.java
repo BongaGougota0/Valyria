@@ -1,7 +1,10 @@
 package za.co.app.Userkolekt.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import za.co.app.Userkolekt.model.LoginCredentials;
@@ -15,9 +18,12 @@ import java.util.UUID;
 public class UserService implements IUserService {
 
     private final IUserCrudRepo userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UserService(IUserCrudRepo userRepository) {
+    public UserService(IUserCrudRepo userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -42,8 +48,13 @@ public class UserService implements IUserService {
     @Override
     public Mono<UserDto> createNewUser(Mono<UserEntity> newUser) {
         return newUser
-                .map(userRepository::save)
-                .map(this::entityToDTO);
+                // Reactive console logging.
+                .doOnNext(user -> logger.info("check user creation, username= {}", user.getUserName()))
+                .map( user -> {
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    return userRepository.save(user);
+                })
+                .flatMap(this::entityToDTO);
     }
 
     @Override
@@ -62,8 +73,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDto entityToDTO(Mono<UserEntity> user) {
-        return new UserDto(user.block().getEmail(), user.block().getUserName());
+    public Mono<UserDto> entityToDTO(Mono<UserEntity> user) {
+        return user.map( obj -> new UserDto(obj.getUserName(), obj.getEmail()));
     }
 
     @Override

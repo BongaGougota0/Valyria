@@ -13,6 +13,6 @@ public interface IUserService  extends ReactiveUserDetailsService {
     Mono<UserEntity> getUserByID(UUID userId);
     Mono<UserEntity> getUserByEmail(String email);
     Mono<UserEntity> getUserByUsername(String username);
-    UserDto entityToDTO(Mono<UserEntity> user);
+    Mono<UserDto> entityToDTO(Mono<UserEntity> user);
     UserEntity DTOtoEntity(UserDto user);
 }

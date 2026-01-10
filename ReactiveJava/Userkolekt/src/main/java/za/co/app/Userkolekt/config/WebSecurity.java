@@ -18,7 +18,8 @@ public class WebSecurity {
                                                    ReactiveAuthenticationManager authenticationManager) {
         return http.authorizeExchange( exchanges -> exchanges
                 .pathMatchers(HttpMethod.POST, "/users").permitAll()
-                .pathMatchers(HttpMethod.POST, "/auth").permitAll()
+                .pathMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/products/**").permitAll()
                 .anyExchange().authenticated())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
