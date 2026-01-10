@@ -21,7 +21,12 @@ public class ProductsController {
     public Mono<ResponseEntity<Product>> addProduct(@RequestBody Mono<Product> product) {
         return productsService.addProduct(product)
                 .map( product1 -> ResponseEntity.ok().body(product1));
+    }
 
+    @GetMapping("/{productId}")
+    public Mono<ResponseEntity<Product>> getAProduct(@PathVariable String productId) {
+        return productsService.getProduct(productId)
+                .map( product1 -> ResponseEntity.ok().body(product1));
     }
 
     @GetMapping("/all")

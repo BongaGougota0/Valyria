@@ -1,5 +1,6 @@
 package za.co.app.Userkolekt.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Data
 @Table("products")
 public class Product {
     @Id

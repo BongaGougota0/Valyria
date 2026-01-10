@@ -24,8 +24,8 @@ public class ProductsService implements IProductsService {
     }
 
     @Override
-    public Mono<Product> getProduct(Mono<String> productId) {
-        return productId.flatMap(id -> {
+    public Mono<Product> getProduct(String productId) {
+        return Mono.just(productId).flatMap(id -> {
             UUID uuid = UUID.fromString(id);
             return productsRepository.findById(uuid);
         });
