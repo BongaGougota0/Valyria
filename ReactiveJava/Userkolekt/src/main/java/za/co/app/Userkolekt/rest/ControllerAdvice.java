@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ControllerAdvice {
 
+    // Bean validation exception handler
     @ExceptionHandler
     public Mono<ErrorResponse> handleWebExchangeBindException(WebExchangeBindException exception) {
         String errorMessage = exception.getBindingResult()

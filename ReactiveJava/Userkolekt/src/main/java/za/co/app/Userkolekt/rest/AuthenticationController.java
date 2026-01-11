@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import za.co.app.Userkolekt.model.LoginCredentials;
 import za.co.app.Userkolekt.model.UserEntity;
@@ -28,7 +29,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public Mono<ResponseEntity<Object>> login(@Validated @RequestBody Mono<LoginCredentials> loginCredentials) {
+    public Mono<ResponseEntity<Object>> login(@Validated @RequestBody Mono<LoginCredentials> loginCredentials,
+                                              ServerWebExchange serverWebExchange) {
+        System.out.println("view servrwebexcange "+ serverWebExchange.getLogPrefix());
         //  use reactive operators to access the values inside loginCredentials
         return loginCredentials
                 .flatMap( authReq ->

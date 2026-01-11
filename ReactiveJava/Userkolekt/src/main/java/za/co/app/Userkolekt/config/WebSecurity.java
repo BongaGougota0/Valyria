@@ -23,7 +23,7 @@ public class WebSecurity {
                 .anyExchange().authenticated())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-                // Register my custom authentication manager from my SpringContext.
+                // Register my custom authentication manager with http security.
                 .authenticationManager(authenticationManager)
                 .build();
     }

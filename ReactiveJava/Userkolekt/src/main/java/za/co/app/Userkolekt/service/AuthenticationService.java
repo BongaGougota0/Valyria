@@ -43,7 +43,7 @@ public class AuthenticationService implements IAuthenticationService {
     private Map<String, String> createAuthResponse(UserEntity user) {
         Map<String, String> results = new HashMap<>();
         results.put("user_id", user.getUserId().toString());
-        results.put("token", "");
+        results.put("token", jwtService.generateJWT(user.getUserId().toString()));
         return  results;
     }
 }
