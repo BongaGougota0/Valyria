@@ -1,11 +1,11 @@
 package za.co.app.Userkolekt.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
 import javax.crypto.SecretKey;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -34,12 +34,23 @@ public class JwtService  implements  IJWTService {
 
     @Override
     public Mono<Boolean> isValidJWT(String jwToken) {
-        return null;
+        return Mono.just(jwToken)
+                .map( token -> parseToken(token))
+                .map(claims -> !claims.getExpiration().before(new Date()))
+                .onErrorReturn(false);
+    }
+
+    private Claims parseToken(String token) {
+        return Jwts.parser()
+                .verifyWith(getSigninkey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     @Override
     public String extractTokenSubject(String jwToken) {
-        return "";
+        return parseToken(jwToken).getSubject();
     }
 
     private SecretKey getSigninkey() {

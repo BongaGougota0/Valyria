@@ -5,17 +5,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.context.NoOpServerSecurityContextRepository;
+import za.co.app.Userkolekt.service.JwtService;
 
 @Configuration @EnableWebFluxSecurity
 public class WebSecurity {
 
     @Bean
     SecurityWebFilterChain httpSecurityFilterChain(ServerHttpSecurity http,
-                                                   ReactiveAuthenticationManager authenticationManager) {
+                                                   ReactiveAuthenticationManager authenticationManager,
+                                                   JwtService jwtService) {
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtService);
         return http.authorizeExchange( exchanges -> exchanges
                 .pathMatchers(HttpMethod.POST, "/users").permitAll()
                 .pathMatchers(HttpMethod.POST, "/auth/**").permitAll()
@@ -25,6 +30,11 @@ public class WebSecurity {
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 // Register my custom authentication manager with http security.
                 .authenticationManager(authenticationManager)
+                // only when its time to do authentication.
+                .addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION) // add filter at a specific pos in filter chain.
+                // make app stateless, do not store any session data
+                // no data shared between any http requests
+                .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
                 .build();
     }
 
