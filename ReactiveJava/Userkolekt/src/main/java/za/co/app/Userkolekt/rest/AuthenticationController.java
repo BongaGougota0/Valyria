@@ -31,7 +31,6 @@ public class AuthenticationController {
     @PostMapping("/login")
     public Mono<ResponseEntity<Object>> login(@Validated @RequestBody Mono<LoginCredentials> loginCredentials,
                                               ServerWebExchange serverWebExchange) {
-        System.out.println("view servrwebexcange "+ serverWebExchange.getLogPrefix());
         //  use reactive operators to access the values inside loginCredentials
         return loginCredentials
                 .flatMap( authReq ->
