@@ -11,7 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.context.NoOpServerSecurityContextRepository;
+import org.springframework.web.cors.CorsConfiguration;
 import za.co.app.Userkolekt.service.JwtService;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration @EnableWebFluxSecurity
 public class WebSecurity {
@@ -21,7 +25,28 @@ public class WebSecurity {
                                                    ReactiveAuthenticationManager authenticationManager,
                                                    JwtService jwtService) {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtService);
-        return http.authorizeExchange( exchanges -> exchanges
+        return http
+                .cors( corsSpec -> corsSpec.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(List.of("http://localhost:4200"));
+                    config.setAllowedMethods(Arrays.asList(
+                            HttpMethod.GET.name(),
+                            HttpMethod.PUT.name(),
+                            HttpMethod.POST.name(),
+                            HttpMethod.DELETE.name(),
+                            HttpMethod.PATCH.name(),
+                            HttpMethod.OPTIONS.name()
+                    ));
+                    config.setAllowedHeaders(Arrays.asList(
+                            "Authorization",
+                            "Content-Type",
+                            "UserId"
+                    ));
+                    config.setAllowCredentials(true);
+                    config.setMaxAge(3600L);
+                    return config;
+                }))
+                .authorizeExchange( exchanges -> exchanges
                 .pathMatchers(HttpMethod.POST, "/users").permitAll()
                 .pathMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/products/**").permitAll()
