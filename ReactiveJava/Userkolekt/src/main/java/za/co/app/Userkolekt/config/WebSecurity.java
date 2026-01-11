@@ -47,7 +47,7 @@ public class WebSecurity {
                     return config;
                 }))
                 .authorizeExchange( exchanges -> exchanges
-                .pathMatchers(HttpMethod.POST, "/users").permitAll()
+                .pathMatchers(HttpMethod.POST, "/users/**").permitAll()
                 .pathMatchers(HttpMethod.POST, "/auth/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/products/**").permitAll()
                 .anyExchange().authenticated())
