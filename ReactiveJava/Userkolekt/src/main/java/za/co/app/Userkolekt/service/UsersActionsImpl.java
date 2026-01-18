@@ -21,6 +21,12 @@ public class UsersActionsImpl implements IUsersActions {
 
     @Override
     public Mono<UserAction> viewProduct(Mono<UserAction> actionMono) {
-        return actionMono.flatMap(action -> actionsRepository.save(action));
+        return actionMono.flatMap(action -> {
+            UserAction newaction = new UserAction();
+            newaction.setProductId(action.getProductId());
+            newaction.setUserId(action.getUserId());
+            newaction.setActionType(action.getActionType());
+            return actionsRepository.save(newaction);
+        });
     }
 }

@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import za.co.app.Userkolekt.model.UserAction;
-import za.co.app.Userkolekt.model.UserEntity;
-import za.co.app.Userkolekt.service.UserService;
 import za.co.app.Userkolekt.service.UsersActionsImpl;
 
 

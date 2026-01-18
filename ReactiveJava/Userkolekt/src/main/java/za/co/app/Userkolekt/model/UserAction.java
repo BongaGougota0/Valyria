@@ -19,7 +19,36 @@ public class UserAction {
     @Column("action_type")
     private String actionType;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
+
     @Column("created_at")
     @CreatedDate
     private LocalDateTime createdAt;
+
 }
