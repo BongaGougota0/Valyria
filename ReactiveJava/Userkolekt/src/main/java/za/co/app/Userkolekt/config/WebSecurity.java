@@ -40,10 +40,12 @@ public class WebSecurity {
                     config.setAllowedHeaders(Arrays.asList(
                             "Authorization",
                             "Content-Type",
-                            "UserId"
+                            "UserId",
+                            "userId"
                     ));
                     config.setAllowCredentials(true);
                     config.setMaxAge(3600L);
+                    config.setExposedHeaders(Arrays.asList("Authorization", "UserId"));
                     return config;
                 }))
                 .authorizeExchange( exchanges -> exchanges
