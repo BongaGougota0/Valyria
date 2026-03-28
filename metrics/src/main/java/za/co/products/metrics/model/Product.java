@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Setter
 @Getter
-@Table
+@Table(name = "products")
 @ToString
 public class Product {
     @Id
