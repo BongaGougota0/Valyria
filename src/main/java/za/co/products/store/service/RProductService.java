@@ -10,6 +10,7 @@ public class RProductService {
 
     private final CacheTemplate<Integer, Product> cacheTemplate;
 
+    // This inject ProductCacheTemplate<Integer, Product>
     public RProductService(CacheTemplate<Integer, Product> cacheTemplate) {
         this.cacheTemplate = cacheTemplate;
     }
