@@ -33,7 +33,9 @@ public class TransactionsTest extends BaseTest {
          RTransactionReactive transaction = this.reactiveClient.createTransaction(TransactionOptions.defaults());
          Mono<Void> mono = this.doMoneyTransfer(this.user1Balance, this.user2Balance, 45)
 //                .thenReturn(0) // Simulate an error
-                .doOnError(System.out::println)
+//                 .map(i -> 5/i)    // Division by 0.
+                 .onErrorResume(ex -> transaction.rollback())
+                 .doOnError(System.out::println)
                  .then(transaction.commit())
                  .doOnError(ex -> transaction.rollback())
                  .then();
