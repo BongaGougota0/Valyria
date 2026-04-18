@@ -1,4 +1,4 @@
-package za.co.geo.locator.model.util;
+package za.co.geo.locator.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
