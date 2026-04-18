@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ZA001xKpLmNqRsTuVwXy",
+    "city": "Cape Town",
+    "latitude": -33.924870,
+    "longitude": 18.424055,
+    "name": "The Test Kitchen",
+    "zip": 7925
+  },
+  {
+    "id": "ZA002aBcDeFgHiJkLmNo",
+    "city": "Cape Town",
+    "latitude": -33.931870,
+    "longitude": 18.417200,
+    "name": "Nobu Cape Town",
+    "zip": 8001
+  },
+  {
+    "id": "ZA003pQrStUvWxYzAbCd",
+    "city": "Cape Town",
+    "latitude": -33.908200,
+    "longitude": 18.418900,
+    "name": "La Colombe",
+    "zip": 7966
+  },
+  {
+    "id": "ZA004eFgHiJkLmNoPqRs",
+    "city": "Johannesburg",
+    "latitude": -26.107567,
+    "longitude": 28.056702,
+    "name": "The Marble",
+    "zip": 2196
+  },
+  {
+    "id": "ZA005tUvWxYzAbCdEfGh",
+    "city": "Johannesburg",
+    "latitude": -26.145800,
+    "longitude": 28.043600,
+    "name": "Nando's Melrose Arch",
+    "zip": 2076
+  },
+  {
+    "id": "ZA006iJkLmNoPqRsTuVw",
+    "city": "Johannesburg",
+    "latitude": -26.190800,
+    "longitude": 28.030200,
+    "name": "Steers Sandton City",
+    "zip": 2146
+  },
+  {
+    "id": "ZA007xYzAbCdEfGhIjKl",
+    "city": "Durban",
+    "latitude": -29.858681,
+    "longitude": 31.021840,
+    "name": "Cargo Hold",
+    "zip": 4001
+  },
+  {
+    "id": "ZA008mNoPqRsTuVwXyZa",
+    "city": "Durban",
+    "latitude": -29.852000,
+    "longitude": 31.030500,
+    "name": "The Chairman",
+    "zip": 4001
+  },
+  {
+    "id": "ZA009bCdEfGhIjKlMnOp",
+    "city": "Durban",
+    "latitude": -29.870100,
+    "longitude": 31.052300,
+    "name": "Spiga d'Oro",
+    "zip": 4052
+  },
+  {
+    "id": "ZA010qRsTuVwXyZaBcDe",
+    "city": "Pretoria",
+    "latitude": -25.747868,
+    "longitude": 28.229271,
+    "name": "Craft",
+    "zip": 181
+  },
+  {
+    "id": "ZA011fGhIjKlMnOpQrSt",
+    "city": "Pretoria",
+    "latitude": -25.760300,
+    "longitude": 28.188600,
+    "name": "Ribs and Burgers Menlyn",
+    "zip": 181
+  },
+  {
+    "id": "ZA012uVwXyZaBcDeFgHi",
+    "city": "Pretoria",
+    "latitude": -25.775400,
+    "longitude": 28.233100,
+    "name": "Carne SA",
+    "zip": 28
+  },
+  {
+    "id": "ZA013jKlMnOpQrStUvWx",
+    "city": "Port Elizabeth",
+    "latitude": -33.960200,
+    "longitude": 25.613600,
+    "name": "Fushin",
+    "zip": 6001
+  },
+  {
+    "id": "ZA014yZaBcDeFgHiJkLm",
+    "city": "Port Elizabeth",
+    "latitude": -33.971000,
+    "longitude": 25.630400,
+    "name": "Barney's Twisted Grill",
+    "zip": 6001
+  },
+  {
+    "id": "ZA015nOpQrStUvWxYzAb",
+    "city": "Bloemfontein",
+    "latitude": -29.118900,
+    "longitude": 26.214200,
+    "name": "De Oude Kraal",
+    "zip": 9301
+  },
+  {
+    "id": "ZA016cDeFgHiJkLmNoPq",
+    "city": "Bloemfontein",
+    "latitude": -29.122000,
+    "longitude": 26.206300,
+    "name": "Juicy Lucy Burger Bar",
+    "zip": 9301
+  },
+  {
+    "id": "ZA017rStUvWxYzAbCdEf",
+    "city": "Stellenbosch",
+    "latitude": -33.934200,
+    "longitude": 18.860600,
+    "name": "96 Winery Road",
+    "zip": 7600
+  },
+  {
+    "id": "ZA018gHiJkLmNoPqRsTu",
+    "city": "Stellenbosch",
+    "latitude": -33.924000,
+    "longitude": 18.855200,
+    "name": "Overture Restaurant",
+    "zip": 7600
+  },
+  {
+    "id": "ZA019vWxYzAbCdEfGhIj",
+    "city": "Franschhoek",
+    "latitude": -33.912100,
+    "longitude": 19.122800,
+    "name": "Le Quartier Français",
+    "zip": 7690
+  },
+  {
+    "id": "ZA020kLmNoPqRsTuVwXy",
+    "city": "Franschhoek",
+    "latitude": -33.915500,
+    "longitude": 19.118400,
+    "name": "The Tasting Room",
+    "zip": 7690
+  },
+  {
+    "id": "ZA021zAbCdEfGhIjKlMn",
+    "city": "Knysna",
+    "latitude": -34.036800,
+    "longitude": 23.047200,
+    "name": "Ile de Pain",
+    "zip": 6570
+  },
+  {
+    "id": "ZA022oPqRsTuVwXyZaBc",
+    "city": "Knysna",
+    "latitude": -34.039400,
+    "longitude": 23.052800,
+    "name": "Zachary's",
+    "zip": 6571
+  },
+  {
+    "id": "ZA023dEfGhIjKlMnOpQr",
+    "city": "George",
+    "latitude": -33.964600,
+    "longitude": 22.461100,
+    "name": "La Cantina",
+    "zip": 6529
+  },
+  {
+    "id": "ZA024sTuVwXyZaBcDeFg",
+    "city": "East London",
+    "latitude": -32.998100,
+    "longitude": 27.871000,
+    "name": "The Grillhouse East London",
+    "zip": 5201
+  },
+  {
+    "id": "ZA025hIjKlMnOpQrStUv",
+    "city": "Polokwane",
+    "latitude": -23.900900,
+    "longitude": 29.448700,
+    "name": "Cattle Baron Polokwane",
+    "zip": 699
+  }
+]
