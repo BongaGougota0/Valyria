@@ -12,9 +12,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 import za.co.geo.locator.config.BaseTest;
-import za.co.geo.locator.model.GeoLocation;
-import za.co.geo.locator.model.Restaurant;
-import za.co.geo.locator.util.RestaurantUtil;
+import za.co.geo.locator.dto.GeoLocation;
+import za.co.geo.locator.dto.Restaurant;
+import za.co.geo.locator.util.RestaurantUtilTest;
 import java.util.function.Function;
 
 public class GeoLocatorTest extends BaseTest {
@@ -22,18 +22,18 @@ public class GeoLocatorTest extends BaseTest {
     private RMapReactive<String, GeoLocation> map;
 
     @BeforeAll
-    public void SetGeoLocatorTest() {
+    public void setGeoLocatorTest() {
         this.restaurants = this.reactiveClient.getGeo("restaurants", new TypedJsonJacksonCodec(Restaurant.class));
-        this.map = this.reactiveClient.getMap("sa:restaurants", new TypedJsonJacksonCodec(GeoLocation.class));
+        this.map = this.reactiveClient.getMap("sa:restaurants", new TypedJsonJacksonCodec(String.class, GeoLocation.class));
     }
 
     @Test
     public void addRestaurants() {
 
-        Mono<Void> mono = Flux.fromIterable(RestaurantUtil.getRestaurants())
-                .flatMap(r -> restaurants.add(r.getLongitude(), r.getLatitude(), r).thenReturn(r))
-                .flatMap(r -> this.map.fastPut(r.getZip(), new GeoLocation(r.getLatitude(), r.getLongitude())))
-                .doOnNext(System.out::println)
+        Mono<Void> mono = Flux.fromIterable(RestaurantUtilTest.getRestaurants())
+                .flatMap(r -> this.restaurants.add(r.getLongitude(), r.getLatitude(), r).thenReturn(r))
+                .flatMap(r -> this.map.fastPut(r.getZip(), GeoLocation.of(r.getLongitude(), r.getLatitude())))
+//                .doOnNext(System.out::println)
                 .then();
 
         StepVerifier.create(mono).verifyComplete();
