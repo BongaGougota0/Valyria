@@ -20,7 +20,7 @@ public class RestaurantLocatorService {
     private final RedissonConfig config = new RedissonConfig();
 
     public RestaurantLocatorService() {
-        this.geoRestaurant = config.getReactiveClient().getGeo("restaurant", new TypedJsonJacksonCodec(Restaurant.class));
+        this.geoRestaurant = config.getReactiveClient().getGeo("restaurants", new TypedJsonJacksonCodec(Restaurant.class));
         this.mapRestaurant = config.getReactiveClient().getMap("sa:restaurant", new TypedJsonJacksonCodec(String.class, GeoLocation.class));
     }
 
