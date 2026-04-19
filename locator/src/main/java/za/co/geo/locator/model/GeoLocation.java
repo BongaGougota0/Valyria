@@ -1,13 +1,10 @@
 package za.co.geo.locator.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
-//@AllArgsConstructor
 @Getter @Setter
+@NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 public class GeoLocation {
     private double latitude;
